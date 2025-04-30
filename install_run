@@ -1,0 +1,44 @@
+# login ke system 
+$ ssh tr11@xxx.xxx.xxx.xxx -p 2029
+# password akan diberikan kemudian
+
+# create conda env
+$ cd ~
+$ cp /mnt-storage1/TRAINING/script/requirements.yaml .
+# edit file requirements.yaml dan sesuaikan nama env serta lokasi env yang akan dibuat
+$ conda env update -n {nama_env} --file requirements.yaml
+$ conda activate {nama_env}
+
+# Install pyroms
+$ git clone https://github.com/ESMG/pyroms.git
+$ pip install -e pyroms/pyroms
+$ pip install -e pyroms/pyroms_toolbox
+$ pip install -e pyroms/bathy_smoother
+
+# Install scrip
+$ cd ~
+$ cd pyroms/pyroms/external/scrip/source/
+$ conda info | grep "active env location"
+# misal output "/home/hadfield/miniconda3/envs/python38"
+$ export PREFIX=/home/hadfield/miniconda3/envs/python38
+$ make DEVELOP=1 PREFIX=$PREFIX install
+$ mv -vf scrip*.so ../../../pyroms
+
+# Menyiapkan working directory
+$ cd ~
+$ cp -r /mnt-storage1/TRAINING/script/pyrom_wdir .
+$ cp ~/pyroms/pyroms/pyroms/gridid.txt pyrom_wdir
+# edit file gridid.txt sesuaikan dengan informasi yang didapat saat membuat domain roms
+
+# export lokasi gridid.txt pada .bashrc
+$ vi .bashrc
+$ export PYROMS_GRIDID_FILE=/home/{user}/pyrom_wdir/gridid.txt
+
+# edit file get grid HYCOM
+$ vi ~/pyroms/pyroms_toolbox/pyroms_toolbox/Grid_HYCOM/get_nc_Grid_HYCOM.py
+# ubah GLBa0.08 menjadi GLBy0.08
+
+# Menjalankan pyroms
+$ cd ~/pyroms_wdir
+$ ./run_get_hycom.sh
+
