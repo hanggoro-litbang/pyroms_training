@@ -38,6 +38,11 @@ $ export PYROMS_GRIDID_FILE=/home/{user}/pyrom_wdir/gridid.txt
 $ vi ~/pyroms/pyroms_toolbox/pyroms_toolbox/Grid_HYCOM/get_nc_Grid_HYCOM.py
 # ubah GLBa0.08 menjadi GLBy0.08
 
+# copy file /home/tr11/pyroms/pyroms/pyroms/scrip.cpython-38-x86_64-linux-gnu.so
+$ cp ~/pyroms/pyroms/pyroms/scrip.cpython-38-x86_64-linux-gnu.so ~/pyroms/pyroms/pyroms/remapping
+$ vi ~/pyroms/pyroms/pyroms/remapping/compute_remap_weights.py
+# tambahkan import pyroms.remapping.scrip
+
 # Menjalankan pyroms
 $ cd ~/pyroms_wdir
 
