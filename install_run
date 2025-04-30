@@ -40,5 +40,8 @@ $ vi ~/pyroms/pyroms_toolbox/pyroms_toolbox/Grid_HYCOM/get_nc_Grid_HYCOM.py
 
 # Menjalankan pyroms
 $ cd ~/pyroms_wdir
+
+# edit file grid_config sesuaikan dengan kebutuhan
+$ vi grid_config.yaml
 $ ./run_get_hycom.sh
 
